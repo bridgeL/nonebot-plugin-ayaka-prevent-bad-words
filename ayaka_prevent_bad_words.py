@@ -1,6 +1,6 @@
 import re
 from asyncio import sleep
-from ayaka import AyakaApp
+from ayaka import AyakaApp, MessageSegment, Message
 
 app = AyakaApp("坏词撤回")
 app.help = '''自动撤回包含屏蔽词的消息'''
@@ -24,7 +24,8 @@ def get_config():
         "config",
         default={
             "delay": 0,
-            "powerful": 0
+            "powerful": 0,
+            "tip": "请谨言慎行"
         }
     ).load()
     return config
@@ -42,14 +43,26 @@ def check(msg: str):
     if config["powerful"] == 1:
         msg = re.sub(r'[\W]', '', msg)
 
-    for word in words:
-        if word in msg:
-            return True
+        for word in words:
+            if word in msg:
+                return True
 
 
 @app.on_text()
-async def _():
+async def bad_words():
     msg = app.event.get_plaintext()
-    if check(msg):
-        await sleep(config["delay"])
-        await app.bot.delete_msg(message_id=app.event.message_id)
+    mid = app.event.message_id
+
+    if not check(msg):
+        return
+
+    tip = Message([MessageSegment.reply(mid), config["tip"]])
+    if config["powerful"] == -1:
+        await app.send(tip)
+        return
+
+    await sleep(config["delay"])
+    try:
+        await app.bot.delete_msg(message_id=mid)
+    except:
+        await app.send(tip)

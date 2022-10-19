@@ -15,6 +15,7 @@ def get_words():
     if data:
         data = data.rstrip("\n")
         words = data.split("\n")
+    words = [w for w in words if w]
     return words
 
 
@@ -27,15 +28,14 @@ def get_config():
         }
     ).load()
     return config
-    
-# words = get_words()
-# config = get_config()
+
+
+words = get_words()
+config = get_config()
+
 
 @app.on_text()
 async def _():
-    words = get_words()
-    config = get_config()
-
     msg = app.event.get_plaintext()
     if config["powerful"] == 1:
         msg = re.sub(r'[\W]', '', msg)

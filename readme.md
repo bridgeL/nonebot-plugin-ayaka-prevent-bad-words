@@ -39,8 +39,9 @@ COMMAND_START=["#"]
 COMMAND_SEP=[" "]
 ```
 
-# 修改屏蔽词列表
-打开nonebot下的`data/坏词撤回/words.txt`（该文件在第一次启动时会自动生成），一行一个敏感词
+
+## 修改屏蔽词列表
+打开nonebot下的`data/plugins/坏词撤回/words.txt`（该文件在第一次启动时会自动生成），一行一个敏感词
 
 例如
 ```
@@ -50,10 +51,11 @@ COMMAND_SEP=[" "]
 
 之后群友发言包含这些敏感词时会被撤回
 
-# 其他配置
-`data/坏词撤回/config.json`
 
-delay 延迟n秒后撤回
+## 其他配置
+`data/plugins/坏词撤回/config.json`
+
+delay 延迟n秒后撤回，默认为0
 
 powerful 检测力度，默认为0
 

@@ -4,7 +4,7 @@
 
 任何问题请发issue
 
-注意：只适用于群聊！管理员无法撤回或禁言其他管理员和群主！
+注意：只适用于群聊！管理员无法撤回其他管理员和群主！
 
 <b>注意：由于更新pypi的readme.md需要占用版本号，因此其readme.md可能不是最新的，强烈建议读者前往[github仓库](https://github.com/bridgeL/nonebot-plugin-ayaka-prevent-bad-words)以获取最新版本的帮助</b>
 

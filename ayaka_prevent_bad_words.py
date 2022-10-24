@@ -7,10 +7,7 @@ app.help = '''自动撤回包含屏蔽词的消息'''
 
 
 def get_words():
-    data = app.plugin_storage(
-        "words", suffix=".txt",
-        default="芝士雪豹\n雪豹闭嘴\n"
-    ).load()
+    data = app.plugin_storage("words.txt", default="芝士雪豹\n雪豹闭嘴\n").load()
     words = []
     if data:
         data = data.rstrip("\n")
@@ -21,7 +18,7 @@ def get_words():
 
 def get_config():
     config = app.plugin_storage(
-        "config",
+        "config.json",
         default={
             "delay": 0,
             "powerful": 0,

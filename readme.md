@@ -1,6 +1,6 @@
 # 坏词撤回
 
-基于ayaka开发的 坏词撤回 插件
+基于[ayaka](https://github.com/bridgeL/nonebot-plugin-ayaka)开发的 坏词撤回 插件
 
 任何问题请发issue
 

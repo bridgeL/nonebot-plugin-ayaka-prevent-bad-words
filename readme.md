@@ -18,7 +18,7 @@
 
 ### word_packages
 
-敏感词列表，可设置若干个词包，各群组独立使用或交叉使用
+敏感词列表，可设置若干个词包，供各群组独立使用或交叉使用
 
 ```json
 {
@@ -37,7 +37,7 @@
 }
 ```
 
-每个词包的name可以为空
+每个词包的`name`属性可以为空
 
 **特殊情况**：若设置群号为0，则该词包会对所有群聊生效
 
@@ -79,3 +79,18 @@
 
 注意：修改配置后，需要重启bot才能生效
 
+## 关于警告
+
+`[WARNING] ayaka | playwright未加载，win平台请关闭fastapi reload功能`
+
+如果仅使用了本插件(`ayaka_prevent_bad_words`)，那么可以关闭`ayaka_setting.json`中的`use_playwright`设置
+
+```json
+{
+    "__root__": {
+        "use_playwright": true,
+        ...
+    },
+    ...
+}
+```

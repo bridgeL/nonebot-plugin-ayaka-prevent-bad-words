@@ -85,12 +85,12 @@
 
 如果仅使用了本插件(`ayaka_prevent_bad_words`)，那么可以关闭`ayaka_setting.json`中的`use_playwright`设置
 
-```json
+```jsonc
 {
     "__root__": {
-        "use_playwright": true,
-        ...
+        "use_playwright": false,
+        // ...
     },
-    ...
+    // ...
 }
 ```

@@ -8,38 +8,17 @@
 - 只适用于群聊
 - 管理员无法撤回其他管理员和群主的发言
 
-<b>注意：由于更新pypi的readme.md需要占用版本号，因此其readme.md可能不是最新的，强烈建议读者前往[github仓库](https://github.com/bridgeL/nonebot-plugin-ayaka-prevent-bad-words)以获取最新版本的帮助</b>
-
-
-# How to start
-
 ## 安装插件
 
-`poetry add nonebot-plugin-ayaka-prevent-bad-words`
+`nb plugin install nonebot-plugin-ayaka-prevent-bad-words`
 
-## 导入插件
+## 修改配置
 
-修改nonebot2  `bot.py` 
+文件位置：`ayaka_setting.json`（该文件在第一次启动时会自动生成）
 
-```python
-nonebot.load_plugin("ayaka_prevent_bad_words")
-```
+`words` 
 
-## 修改屏蔽词列表
-文件位置：`data/plugins/坏词撤回/words.txt`（该文件在第一次启动时会自动生成）
-
-一行一个敏感词
-
-```
-芝士雪豹
-雪豹闭嘴
-```
-
-之后群友发言包含这些词时会被撤回
-
-
-## 其他配置
-文件位置：`data/plugins/坏词撤回/config.json`（该文件在第一次启动时会自动生成）
+敏感词列表
 
 `delay` 
 

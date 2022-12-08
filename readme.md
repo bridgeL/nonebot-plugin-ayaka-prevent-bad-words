@@ -1,4 +1,6 @@
-# 坏词撤回 0.1.1
+# 坏词撤回 0.2.0b0
+
+**注意：目前兼容性较差，如果有其他插件受到影响，请安装0.1.1版本**
 
 基于[ayaka](https://github.com/bridgeL/nonebot-plugin-ayaka)开发的 坏词撤回 插件
 
@@ -14,7 +16,7 @@
 
 ## 配置
 
-文件位置：`ayaka_setting.json`（该文件在第一次启动时会自动生成）
+文件位置：`data/ayaka/ayaka_setting.json`（该文件在第一次启动时会自动生成）
 
 ### word_packages
 
@@ -79,18 +81,3 @@
 
 注意：修改配置后，需要重启bot才能生效
 
-## 关于警告
-
-`[WARNING] ayaka | playwright未加载，win平台请关闭fastapi reload功能`
-
-如果仅使用了本插件(`ayaka_prevent_bad_words`)，那么可以关闭`ayaka_setting.json`中的`use_playwright`设置
-
-```jsonc
-{
-    "__root__": {
-        "use_playwright": false,
-        // ...
-    },
-    // ...
-}
-```

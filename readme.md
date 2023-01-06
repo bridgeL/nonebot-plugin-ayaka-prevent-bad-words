@@ -1,4 +1,4 @@
-# 坏词撤回 0.2.0
+# 坏词撤回 0.3.0
 
 基于[ayaka](https://github.com/bridgeL/nonebot-plugin-ayaka)开发的 坏词撤回 插件
 
@@ -14,7 +14,7 @@
 
 ## 配置
 
-文件位置：`data/ayaka/ayaka_setting.json`（该文件在第一次启动时会自动生成）
+文件位置：`data/ayaka/坏词撤回.json`（该文件在第一次启动时会自动生成）
 
 ### word_packages
 

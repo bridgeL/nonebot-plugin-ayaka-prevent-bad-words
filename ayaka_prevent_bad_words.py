@@ -3,9 +3,9 @@ from asyncio import sleep
 from typing import List
 from loguru import logger
 from pydantic import BaseModel
-from ayaka import AyakaApp, MessageSegment, Message, AyakaConfig
+from ayaka import AyakaBox, MessageSegment, Message, AyakaConfig
 
-app = AyakaApp("坏词撤回")
+app = AyakaBox("坏词撤回")
 app.help = '''自动撤回包含屏蔽词的消息'''
 
 
@@ -23,7 +23,7 @@ default_word_packages = [
 
 
 class Config(AyakaConfig):
-    __app_name__ = app.name
+    __config_name__ = app.name
     delay: int = 0
     powerful: int = 0
     tip: str = "请谨言慎行"
@@ -51,8 +51,7 @@ def check(msg: str, group_id: int):
             return True
 
 
-@app.on.idle()
-@app.on.text()
+@app.on_text(always=True)
 async def bad_words():
     msg = app.event.get_plaintext()
     mid = app.event.message_id

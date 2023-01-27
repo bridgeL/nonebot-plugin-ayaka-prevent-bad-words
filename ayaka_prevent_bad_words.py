@@ -3,10 +3,12 @@ from asyncio import sleep
 from typing import List
 from loguru import logger
 from pydantic import BaseModel
-from ayaka import AyakaBox, MessageSegment, Message, AyakaConfig
+from nonebot.adapters.onebot.v11 import MessageSegment, Message
+from nonebot.matcher import current_bot, current_event
+from ayaka import AyakaCat, AyakaConfig
 
-app = AyakaBox("坏词撤回")
-app.help = '''自动撤回包含屏蔽词的消息'''
+cat = AyakaCat("坏词撤回")
+cat.help = '''自动撤回包含屏蔽词的消息'''
 
 
 class WordPackage(BaseModel):
@@ -23,7 +25,7 @@ default_word_packages = [
 
 
 class Config(AyakaConfig):
-    __config_name__ = app.name
+    __config_name__ = cat.name
     delay: int = 0
     powerful: int = 0
     tip: str = "请谨言慎行"
@@ -46,16 +48,17 @@ def check(msg: str, group_id: int):
         msg = re.sub(r'[\W]', '', msg)
 
     words = get_words(group_id)
+    print(words)
     for word in words:
         if word in msg:
             return True
 
 
-@app.on_text(always=True)
+@cat.on_text(always=True)
 async def bad_words():
-    msg = app.event.get_plaintext()
-    mid = app.event.message_id
-    gid = app.group_id
+    msg = cat.message
+    mid = current_event.get().message_id
+    gid = int(cat.group.id)
 
     if not check(msg, gid):
         return
@@ -63,9 +66,9 @@ async def bad_words():
     if config.powerful >= 0:
         await sleep(config.delay)
         try:
-            await app.bot.delete_msg(message_id=mid)
+            await current_bot.get().delete_msg(message_id=mid)
         except:
             logger.warning("撤回失败，可能是bot权限不够导致")
 
     if config.tip:
-        await app.send(Message([MessageSegment.reply(mid), config.tip]))
+        await cat.send(Message([MessageSegment.reply(mid), config.tip]))

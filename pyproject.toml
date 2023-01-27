@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "nonebot_plugin_ayaka_prevent_bad_words"
-version = "0.3.0"
+version = "0.4.0"
 description = "坏词撤回"
 authors = ["Su <wxlxy316@163.com>"]
 license = "MIT"
@@ -12,8 +12,7 @@ packages = [
 
 
 [tool.poetry.dependencies]
-python = "^3.8"
-nonebot-plugin-ayaka = "~1.0.1"
+ayaka = "^0.0.2.0"
 
 [build-system]
 requires = ["poetry-core"]

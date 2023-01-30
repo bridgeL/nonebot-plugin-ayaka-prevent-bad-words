@@ -48,7 +48,6 @@ def check(msg: str, group_id: int):
         msg = re.sub(r'[\W]', '', msg)
 
     words = get_words(group_id)
-    print(words)
     for word in words:
         if word in msg:
             return True

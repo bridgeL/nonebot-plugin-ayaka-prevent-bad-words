@@ -30,6 +30,7 @@ class Config(AyakaConfig):
     powerful: int = 0
     tip: str = "请谨言慎行"
     word_packages: List[WordPackage] = default_word_packages
+    exclude_cq: list[str] = ["at", "image", "json", "xml"]
 
 
 config = Config()
@@ -44,6 +45,9 @@ def get_words(group_id: int):
 
 
 def check(msg: str, group_id: int):
+    for cq in config.exclude_cq:
+        msg = re.sub(f"\[CQ:{cq}.*?\]", "", msg)
+
     if config.powerful == 1:
         msg = re.sub(r'[\W]', '', msg)
 
